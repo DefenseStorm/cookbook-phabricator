@@ -10,7 +10,9 @@
 # Copy some parameters into explicit Phabricator configuration
 node.default['phabricator']['config']['repository.default-local-path'] = node['phabricator']['repository_path']
 node.default['phabricator']['config']['phd.user'] = node['phabricator']['user']
-node.default['phabricator']['config']['storage.local-disk.path'] = node['phabricator']['file_storage_path']
+if node['phabricator']['use_local_storage']
+  node.default['phabricator']['config']['storage.local-disk.path'] = node['phabricator']['file_storage_path']
+end
 
 # Some default Phabricator settings
 node.default['phabricator']['config']['metamta.domain'] = node['phabricator']['domain']
