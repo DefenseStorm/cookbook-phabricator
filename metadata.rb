@@ -10,7 +10,7 @@ supports            'ubuntu', '= 12.04'
 supports            'ubuntu', '= 14.04'
 
 depends             'apt',      '>= 2.6'
-depends             'php',      '~> 1.10'
+depends             'php',      '>= 1.10'
 depends             'php-fpm',  '~> 0.7'
 depends             'chef_nginx', '>= 2.9'
 depends             'mysql',    '~> 6.1'
