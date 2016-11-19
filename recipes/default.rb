@@ -35,7 +35,7 @@ nginx_enabled_conf = "/etc/nginx/sites-enabled/#{node['phabricator']['domain']}.
 include_recipe 'apt'
 
 # Include needed recipes
-include_recipe "nginx"
+include_recipe "chef_nginx"
 include_recipe "php"
 include_recipe "php-fpm"
 
