@@ -12,9 +12,9 @@
 # Including Apt will run `apt-get update` to ensure against trying to
 # pull expired versions of packages.
 include_recipe 'apt'
+include_recipe 'php'
 
-package 'php5-cli'
-package 'php5-curl'
+package node['php']['curl']['package']
 package 'git'
 
 directory node['phabricator']['arcanist']['destination'] do
