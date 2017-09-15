@@ -158,8 +158,7 @@ execute "upgrade_phabricator_databases" do
     notifies :stop, "service[php-fpm]", :immediately
     notifies :stop, "service[phd]", :immediately
     notifies :run, "execute[run_storage_upgrade]", :immediately
-    # Starting service phd intentionally omitted, due to a possible Chef bug.
-    # It is started by default, though, so no harm done.
+    notifies :start, "service[phd]", :immediately
     notifies :start, "service[php-fpm]", :immediately
 end
 
