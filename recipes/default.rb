@@ -185,6 +185,6 @@ end
 
 ruby_block 'set_storage_upgrade_done' do
     block do
-        node.set['phabricator']['storage_upgrade_done'] = true
+        node.normal['phabricator']['storage_upgrade_done'] = true
     end
 end
