@@ -26,7 +26,7 @@ action :delete do
 end
 
 def load_current_resource
-    @current_resource = Chef::Resource::PhabricatorConfig.new(@new_resource.name)
+    @current_resource = Chef::Resource.resource_for_node(:phabricator_config, node).new(@new_resource.name)
     @current_resource.name(@new_resource.name)
     @current_resource.value(@new_resource.value)
 
