@@ -21,3 +21,5 @@ bin/*
 
 # Eclipse
 .project
+.idea
+
