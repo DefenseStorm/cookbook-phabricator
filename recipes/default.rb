@@ -15,7 +15,6 @@ if node['phabricator']['use_local_storage']
 end
 
 # Some default Phabricator settings
-node.default['phabricator']['config']['metamta.domain'] = node['phabricator']['domain']
 node.default['phabricator']['config']['metamta.default-address'] = "#{node['phabricator']['user']}@#{node['phabricator']['domain']}"
 node.default['phabricator']['config']['metamta.reply-handler-domain'] = node['phabricator']['domain']
 
