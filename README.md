@@ -12,8 +12,8 @@ This cookbook has been tested on Ubuntu 12.04 and 14.04.
 
 #### Cookbooks
 - `apt ~> 2.6`
-- `php ~> 1.5`
-- `php-fpm ~> 0.7`
+- `php ~> 7.0`
+- `php-fpm ~> 0.8`
 - `nginx ~> 2.7`
 - `mysql ~> 6.0`
 - `database ~> 3.1`

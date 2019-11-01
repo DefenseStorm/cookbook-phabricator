@@ -13,9 +13,9 @@
 # pull expired versions of packages.
 include_recipe 'apt'
 
-package 'php5-cli'
-package 'php5-curl'
-package 'git'
+node['phabricator']['arcanist']['packages'].each do |pkg|
+  package pkg
+end
 
 directory node['phabricator']['arcanist']['destination'] do
     action :create
