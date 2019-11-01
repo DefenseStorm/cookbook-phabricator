@@ -75,3 +75,13 @@ default['phabricator']['packages'] = [
 # Where to put Arcanist when using the arcanist recipe
 default['phabricator']['arcanist']['destination'] = '/usr/local/lib/phabricator'
 default['phabricator']['arcanist']['bin'] = '/usr/local/bin/arc'
+
+if node['platform_version'].to_f >= 18.04
+  default['phabricator']['arcanist']['packages'] = [
+    'php-cli', 'php-curl', 'gir'
+  ]
+elsif node['platform_version'].to_f >= 14.04
+  default['phabricator']['arcanist']['packages'] = [
+    'php5-cli', 'php5-curl', 'gir'
+]
+end
