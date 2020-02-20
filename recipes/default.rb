@@ -43,9 +43,11 @@ if ['localhost', '127.0.0.1', '::1'].include?(node['phabricator']['mysql_host'])
     include_recipe 'phabricator::mysql_server'
 end
 
-# add apt repo for php
-apt_repository 'php' do
-  uri 'ppa:ondrej/php'
+if node['platform'] == 'ubuntu' && node['platform_version'].to_f >= 18.04
+  # add apt repo for php
+  apt_repository 'php' do
+    uri 'ppa:ondrej/php'
+  end
 end
 
 # Install required packages for Phabricator
