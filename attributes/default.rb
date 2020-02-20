@@ -67,10 +67,15 @@ default['phabricator']['config'] = {
 }
 
 # Package dependencies
-default['phabricator']['packages'] = [
-    'curl', 'git', 'php5', 'php5-ldap', 'php5-mysqlnd', 'php5-gd', 'php5-dev', 'php5-curl',
-    'php-apc', 'php5-cli', 'php5-json', 'python-pygments',
-]
+if node['platform'] == 'ubuntu' && node['platform_version'].to_f >= 18.04
+  default['phabricator']['packages'] = [
+    'curl', 'git', 'php7.2', 'php7.2-ldap', 'php7.2-mysqlnd', 'php7.2-gd', 'php7.2-dev', 'php7.2-curl', 'php-apcu', 'php7.2-cli', 'php7.2-json', 'python-pygments'
+  ]
+else
+  default['phabricator']['packages'] = [
+    'curl', 'git', 'php5', 'php5-ldap', 'php5-mysqlnd', 'php5-gd', 'php5-dev', 'php5-curl', 'php-apc', 'php5-cli', 'php5-json', 'python-pygments'
+  ]
+end
 
 # Where to put Arcanist when using the arcanist recipe
 default['phabricator']['arcanist']['destination'] = '/usr/local/lib/phabricator'
