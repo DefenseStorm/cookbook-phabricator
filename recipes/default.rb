@@ -106,13 +106,38 @@ php_fpm_pool "phabricator" do
     php_options node['phabricator']['php']['options']
 end
 
-template '/etc/init/phd.conf' do
-    source 'upstart/phd.erb'
-    owner 'root'
-    group 'root'
-    mode '0644'
+if node['platform'] == 'ubuntu' && node['platform_version'].to_f >= 16.04
+  systemd_unit 'phd.service' do
+    content <<-EOU.gsub(/^\s+/, "")
+    [Unit]
+    Description=Phabricator Daemons
+    After=network.target
+    Requires=network.target
+    [Service]
+    Type=forking
+    User=phabricator
+    Group=www-data
+    ExecStart=/opt/phabricator/phabricator/bin/phd start
+    ExecStop=/opt/phabricator/phabricator/bin/phd stop
+    Restart=always
+    RestartSec=10
+    StartLimitInterval=0
+    StartLimitBurst=0
+    [Install]
+    WantedBy=multi-user.target
+    EOU
+    
+    action [:create, :enable]
+  end
+else
+  template '/etc/init/phd.conf' do
+      source 'upstart/phd.erb'
+      owner 'root'
+      group 'root'
+      mode '0644'
+  end
 end
-
+  
 template "/etc/logrotate.d/phd" do
     source "phd-logrotate.erb"
     user "root"
@@ -176,10 +201,16 @@ node['phabricator']['config'].each do |key, value|
     end
 end
 
-service 'phd' do
+if node['platform'] == 'ubuntu' && node['platform_version'].to_f >= 16.04
+  service 'phd' do
+    action [:enable, :start]
+  end  
+else
+  service 'phd' do
     supports :status => true, :restart => true, :start => true, :stop => true
     provider Chef::Provider::Service::Upstart
     action [:enable, :start]
+  end
 end
 
 ruby_block 'set_storage_upgrade_done' do
