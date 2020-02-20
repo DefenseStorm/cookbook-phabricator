@@ -68,8 +68,7 @@ default['phabricator']['config'] = {
 
 # Package dependencies
 default['phabricator']['packages'] = [
-    'curl', 'git', 'php5', 'php5-ldap', 'php5-mysqlnd', 'php5-gd', 'php5-dev', 'php5-curl',
-    'php-apc', 'php5-cli', 'php5-json', 'python-pygments',
+    'curl', 'git', 'php7.2', 'php7.2-ldap', 'php7.2-mysqlnd', 'php7.2-gd', 'php7.2-dev', 'php7.2-curl', 'php-apcu', 'php7.2-cli', 'php7.2-json', 'python-pygments'
 ]
 
 # Where to put Arcanist when using the arcanist recipe

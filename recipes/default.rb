@@ -43,6 +43,11 @@ if ['localhost', '127.0.0.1', '::1'].include?(node['phabricator']['mysql_host'])
     include_recipe 'phabricator::mysql_server'
 end
 
+# add apt repo for php
+apt_repository 'php' do
+  uri 'ppa:ondrej/php'
+end
+
 # Install required packages for Phabricator
 node['phabricator']['packages'].each do |p|
     package p do
