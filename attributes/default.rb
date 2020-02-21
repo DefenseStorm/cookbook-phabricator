@@ -69,7 +69,7 @@ default['phabricator']['config'] = {
 # Package dependencies
 if node['platform'] == 'ubuntu' && node['platform_version'].to_f >= 18.04
   default['phabricator']['packages'] = [
-    'curl', 'git', 'php7.2', 'php7.2-ldap', 'php7.2-mysqlnd', 'php7.2-gd', 'php7.2-dev', 'php7.2-curl', 'php-apcu', 'php7.2-cli', 'php7.2-json', 'python-pygments'
+    'curl', 'git', 'php7.2', 'php7.2-ldap', 'php7.2-mysqlnd', 'php7.2-gd', 'php7.2-dev', 'php7.2-curl', 'php-apcu', 'php7.2-cli', 'php7.2-json', 'python-pygments', 'php-mbstring'
   ]
 else
   default['phabricator']['packages'] = [
